@@ -4,17 +4,16 @@ import Button from "@/components/buttons/Button";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import AuthForm from "./AuthForm";
+import { navigate } from "@/lib/server";
 
 type VariantAuth = "LOGIN" | "REGISTER";
 
 const AuthInner = () => {
   const [variantAuth, setVariantAuth] = useState<VariantAuth>("LOGIN");
   const [isClient, setIsClient] = useState<boolean>(false);
-  const router = useRouter();
 
   const handleToggleVariantAuth = () => {
     setVariantAuth((prev) => (prev === "LOGIN" ? "REGISTER" : "LOGIN"));
@@ -41,7 +40,7 @@ const AuthInner = () => {
         <h1 className="text-3xl font-medium text-neutral-900 md:text-4xl">
           {variantAuth === "LOGIN" ? "Masuk ke akunmu" : "Buat akun"}
         </h1>
-        <div className="pt-2 pb-3 text-start text-xs text-neutral-800">
+        <div className="font-montserrat pt-2 pb-3 text-start text-xs text-neutral-800">
           {variantAuth === "LOGIN" ? "Belum punya akun?" : "Sudah punya akun?"}{" "}
           <span
             onClick={handleToggleVariantAuth}
@@ -71,8 +70,8 @@ const AuthInner = () => {
             type="button"
             outline
             rounded="full"
-            onClick={() => router.back()}
-            className="px-2 text-white"
+            onClick={() => navigate("/")}
+            className="font-montserrat px-2 text-white"
           >
             Back to website <FiArrowRight />
           </Button>
