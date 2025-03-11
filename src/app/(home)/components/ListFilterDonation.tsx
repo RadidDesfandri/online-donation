@@ -1,6 +1,6 @@
 "use client";
 
-import { FILTER_ITEMS } from "@/constanta/filterbox";
+import { FILTER_ITEMS } from "@/constanst/filterbox";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useRef } from "react";
 import BoxFilter from "./BoxFilter";

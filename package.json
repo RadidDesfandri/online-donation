@@ -12,6 +12,7 @@
     "@next/font": "^14.2.15",
     "@prisma/client": "^6.4.1",
     "@tanstack/react-query": "^5.67.2",
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
     "axios": "^1.8.2",
     "clsx": "^2.1.1",
     "formik": "^2.4.6",

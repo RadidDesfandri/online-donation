@@ -47,7 +47,11 @@ export const Header = () => {
         {pathname !== "/" && (
           <IoBookmarksOutline size={20} className="cursor-pointer" />
         )}
-        <Button onClick={() => router.push("/login")} outline autoPadding>
+        <Button
+          outline
+          autoPadding
+          onClick={() => router.push("/auth?role=user")}
+        >
           Log in
         </Button>
         {/* <Avatar avatar="https://img.freepik.com/free-vector/smiling-redhaired-boy-illustration_1308-176664.jpg?uid=R81763287&ga=GA1.1.1155690026.1729800077&semt=ais_hybrid" /> */}
