@@ -1,11 +1,12 @@
 import prisma from "@/lib/prismadb";
 import { responseError } from "@/lib/responseError";
+import { supabase } from "@/lib/supabase/supabaseClient";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {
   try {
     const body = await req.json();
-    const { email } = body;
+    const { email, password } = body;
 
     const existingEmail = await prisma.user.findUnique({
       where: {
@@ -14,8 +15,18 @@ export const POST = async (req: Request) => {
     });
 
     if (existingEmail) {
-      return responseError("Email already exist, please change your email", 400);
+      return responseError(
+        "Email already exist, please change your email",
+        400,
+      );
     }
+
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (error) return responseError(error.message, 400);
 
     const newUser = await prisma.user.create({
       data: {
