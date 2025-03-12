@@ -1,9 +1,9 @@
-import { getToken } from "@/lib/supabase/getToken";
+import { getSession } from "@/actions/getSession";
 import React from "react";
 
 const page = async () => {
-  const token = await getToken();
-  return <div>{token}</div>;
+  const token = await getSession();
+  return <div>{token?.user.email}</div>;
 };
 
 export default page;

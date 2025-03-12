@@ -1,21 +1,22 @@
-import { Montserrat, Raleway, Roboto_Slab } from "@next/font/google";
-import type { Metadata } from "next";
 import "./globals.css";
+import type { Metadata } from "next";
+import { AuthProvider } from "@/context/AuthContext";
 import TanstackQueryProvider from "@/components/TanstackQueryProvider";
+import { Montserrat, Raleway, Roboto_Slab } from "@next/font/google";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  style: ["normal", "italic"],
 });
 
 const robotoSlab = Roboto_Slab({
   subsets: ["latin"],
-  variable: "--font-roboto-slab",
+  style: ["normal"],
 });
 
 const raleway = Raleway({
   subsets: ["latin"],
-  variable: "--font-raleway",
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -31,9 +32,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} ${robotoSlab.variable} ${raleway.variable}`}
+        className={`${montserrat.className} ${robotoSlab.className} ${raleway.className}`}
       >
-        <TanstackQueryProvider>{children}</TanstackQueryProvider>
+        <AuthProvider>
+          <TanstackQueryProvider>{children}</TanstackQueryProvider>
+        </AuthProvider>
       </body>
     </html>
   );
