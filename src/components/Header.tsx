@@ -1,17 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { IoBookmarksOutline, IoSearchOutline } from "react-icons/io5";
+import { navigate } from "@/lib/server";
+import { motion } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { IoBookmarksOutline, IoSearchOutline } from "react-icons/io5";
 import Search from "./Search";
 import Button from "./buttons/Button";
-import { motion } from "framer-motion";
+import Avatar from "./Avatar";
+import { useSession } from "@/hooks/auth/useSession";
+import { useGetCurrentUser } from "@/hooks/auth/useGetCurrentUser";
 
 export const Header = () => {
   const pathname = usePathname();
   const [activeSearch, setActiveSearch] = useState(false);
-  const router = useRouter();
+  const { session, isLoading } = useSession();
+  const { data: userData } = useGetCurrentUser();
 
   return (
     <div className="mx-auto flex max-w-5xl items-center justify-between bg-white px-5 py-4 shadow-md md:px-0 md:shadow-none">
@@ -24,7 +29,7 @@ export const Header = () => {
         />
       )}
       <div className="flex items-center gap-x-3">
-        {pathname === "/" && (
+        {pathname === "/" ? (
           <div className="flex items-center gap-x-1">
             {activeSearch && (
               <motion.div
@@ -43,14 +48,19 @@ export const Header = () => {
               className="block cursor-pointer md:hidden"
             />
           </div>
-        )}
-        {pathname !== "/" && (
+        ) : (
           <IoBookmarksOutline size={20} className="cursor-pointer" />
         )}
-        <Button onClick={() => router.push("/login")} outline autoPadding>
-          Log in
-        </Button>
-        {/* <Avatar avatar="https://img.freepik.com/free-vector/smiling-redhaired-boy-illustration_1308-176664.jpg?uid=R81763287&ga=GA1.1.1155690026.1729800077&semt=ais_hybrid" /> */}
+
+        {isLoading ? (
+          <p className="text-xs">waiting...</p>
+        ) : session ? (
+          <Avatar avatar={userData?.avatar} />
+        ) : (
+          <Button outline autoPadding onClick={() => navigate("/auth")}>
+            Log in
+          </Button>
+        )}
       </div>
     </div>
   );

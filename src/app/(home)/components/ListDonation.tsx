@@ -1,4 +1,4 @@
-import { DUMMY_ITEMS } from "@/constanta/dummy";
+import { DUMMY_ITEMS } from "@/constanst/dummy";
 import React from "react";
 import CardDonation from "./CardDonation";
 

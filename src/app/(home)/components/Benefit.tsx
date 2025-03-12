@@ -1,6 +1,6 @@
 import Image from "next/image";
 import CardBenefit from "./CardBenefit";
-import { BENEFIT_ITEMS } from "@/constanta/benefit";
+import { BENEFIT_ITEMS } from "@/constanst/benefit";
 
 const Benefit = () => {
   const leftCard = BENEFIT_ITEMS.slice(0, 2);
