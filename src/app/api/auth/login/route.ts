@@ -25,7 +25,7 @@ export const POST = async (req: Request) => {
 
     return NextResponse.json({ msg: "Login successfully", data });
   } catch (error) {
-    console.log("ERROR SAAT MENDAPATKAN DATA:", error);
+    console.log("ERROR ROUTE API:", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 };

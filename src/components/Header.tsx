@@ -8,13 +8,15 @@ import { useState } from "react";
 import { IoBookmarksOutline, IoSearchOutline } from "react-icons/io5";
 import Search from "./Search";
 import Button from "./buttons/Button";
-import { useAuth } from "@/context/AuthContext";
 import Avatar from "./Avatar";
+import { useSession } from "@/hooks/auth/useSession";
+import { useGetCurrentUser } from "@/hooks/auth/useGetCurrentUser";
 
 export const Header = () => {
   const pathname = usePathname();
   const [activeSearch, setActiveSearch] = useState(false);
-  const { session, isLoading } = useAuth();
+  const { session, isLoading } = useSession();
+  const { data: userData } = useGetCurrentUser();
 
   return (
     <div className="mx-auto flex max-w-5xl items-center justify-between bg-white px-5 py-4 shadow-md md:px-0 md:shadow-none">
@@ -53,7 +55,7 @@ export const Header = () => {
         {isLoading ? (
           <p className="text-xs">waiting...</p>
         ) : session ? (
-          <Avatar />
+          <Avatar avatar={userData?.avatar} />
         ) : (
           <Button outline autoPadding onClick={() => navigate("/auth")}>
             Log in

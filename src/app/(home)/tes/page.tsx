@@ -1,8 +1,8 @@
 import { getSession } from "@/actions/getSession";
-import React from "react";
 
 const page = async () => {
   const token = await getSession();
+  console.log(token?.access_token);
   return <div>{token?.user.email}</div>;
 };
 
