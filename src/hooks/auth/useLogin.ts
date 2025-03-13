@@ -16,7 +16,6 @@ export const useLogin = () => {
       return data;
     },
     onSuccess: (data) => {
-      console.log("KETIKA SUCCESS:", data);
       alert(data.msg);
       router.push("/");
     },

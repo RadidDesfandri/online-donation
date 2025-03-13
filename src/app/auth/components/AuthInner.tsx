@@ -29,8 +29,10 @@ const AuthInner = () => {
     <motion.div
       layout
       className={clsx(
-        "ring-secondaryGreen flex min-h-[530px] min-w-3xl justify-between rounded-xl p-3 shadow ring-2",
-        variantAuth === "LOGIN" ? "flex-row-reverse" : "flex-row",
+        "ring-secondaryGreen flex w-full justify-between gap-y-6 rounded-xl p-3 shadow ring-2 md:min-h-[530px] md:min-w-3xl",
+        variantAuth === "LOGIN"
+          ? "flex-col md:flex-row-reverse"
+          : "flex-col-reverse md:flex-row",
       )}
     >
       <motion.div
@@ -54,7 +56,7 @@ const AuthInner = () => {
       </motion.div>
       <motion.div
         layout
-        className="relative hidden w-full overflow-hidden rounded-xl bg-gray-700 md:block"
+        className="relative w-full overflow-hidden rounded-xl bg-gray-700 md:block"
       >
         <Image
           src="/dummy/dummy2.jpg"

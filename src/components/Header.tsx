@@ -14,6 +14,7 @@ import Avatar from "./Avatar";
 import Search from "./Search";
 import PopupAnimate from "./animations/PopupAnimate";
 import Button from "./buttons/Button";
+import clsx from "clsx";
 
 export const Header = () => {
   const pathname = usePathname();
@@ -33,20 +34,42 @@ export const Header = () => {
   useClickOutside([avatarRef, popupRef], toggleAvatar, openAvatar);
 
   return (
-    <div className="relative mx-auto flex max-w-5xl items-center justify-between bg-white px-5 py-4 shadow-md md:px-0 md:shadow-none">
-      <Link href={"/"} className="font-robotoslab">
+    <div
+      className={clsx(
+        "relative mx-auto flex w-full max-w-5xl items-center bg-white px-5 py-4 shadow-md md:px-0 md:shadow-none",
+        openSearch ? "justify-end" : "justify-between",
+      )}
+    >
+      <Link
+        href={"/"}
+        className={clsx(
+          "font-robotoslab transition-all duration-300",
+          openSearch ? "hidden md:block" : "block",
+        )}
+      >
         Logo
       </Link>
 
       {pathname === "/" && <Search withIcon className="hidden md:flex" />}
 
-      <div className="flex items-center gap-x-3">
+      <div
+        className={clsx(
+          "flex items-center gap-x-3",
+          openSearch && "w-full justify-end md:w-fit md:justify-normal",
+        )}
+      >
         {pathname === "/" ? (
-          <div className="flex items-center gap-x-2">
+          <div
+            className={clsx(
+              "flex items-center gap-x-2",
+              openSearch && "w-full justify-between",
+              openSearch && session ? "max-w-[320px]" : "max-w-[285px]",
+            )}
+          >
             <PopupAnimate
               ref={searchRef}
               isOpen={openSearch}
-              className="flex md:hidden"
+              className="flex w-full md:hidden"
               originPopup="center-right"
             >
               <Search autoFocus />

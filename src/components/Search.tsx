@@ -11,7 +11,7 @@ const Search: React.FC<SearchProps> = ({ className, withIcon, autoFocus }) => {
   return (
     <div
       className={clsx(
-        `ring-primaryGreen relative flex max-w-xl items-center justify-center rounded-full ring-2 md:w-full ${className}`,
+        `ring-primaryGreen relative flex w-full items-center justify-center rounded-full ring-2 md:max-w-xl ${className}`,
         withIcon && "px-5",
       )}
     >
@@ -24,7 +24,7 @@ const Search: React.FC<SearchProps> = ({ className, withIcon, autoFocus }) => {
         autoComplete="off"
         autoFocus={autoFocus}
         className={clsx(
-          `w-fit max-w-xl rounded-full bg-transparent px-3 py-1 text-sm outline-none md:w-full md:px-5 md:py-2`,
+          `w-full rounded-full bg-transparent px-3 py-1 text-sm outline-none md:px-5 md:py-2`,
         )}
       />
     </div>
