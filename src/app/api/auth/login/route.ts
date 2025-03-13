@@ -1,16 +1,16 @@
 import prisma from "@/lib/prismadb";
 import { responseError } from "@/lib/responseError";
-import { supabaseRouteHandler } from "@/lib/supabase/supabaseRouteHandler";
+import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {
   console.log("Incoming request:", req.method); // Cek metode request
 
-  if (req.method !== "POST") {
-    return new NextResponse("Method Not Allowed", { status: 405 });
-  }
-
   try {
+    const supabase = createRouteHandlerClient({ cookies });
+    // const tes = createServerActionClient({ cookies });
+
     const body = await req.json();
     console.log("Request body:", body); // Debug data yang dikirim
     const { email, password } = body;
@@ -23,7 +23,7 @@ export const POST = async (req: Request) => {
 
     if (!existUser) return responseError("User not found", 404);
 
-    const { error, data } = await supabaseRouteHandler.auth.signInWithPassword({
+    const { error, data } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
