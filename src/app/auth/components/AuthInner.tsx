@@ -29,7 +29,7 @@ const AuthInner = () => {
     <motion.div
       layout
       className={clsx(
-        "ring-secondaryGreen flex w-full justify-between gap-y-6 rounded-xl p-3 shadow ring-2 md:min-h-[530px] md:min-w-3xl",
+        "ring-secondaryGreen flex w-full justify-between gap-y-6 rounded-xl p-3 shadow ring-2 md:min-h-[530px] md:w-3xl",
         variantAuth === "LOGIN"
           ? "flex-col md:flex-row-reverse"
           : "flex-col-reverse md:flex-row",
