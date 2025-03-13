@@ -3,9 +3,10 @@ CREATE TYPE "Role" AS ENUM ('USER', 'PROVIDER', 'ADMIN');
 
 -- CreateTable
 CREATE TABLE "User" (
-    "id" SERIAL NOT NULL,
+    "id" UUID NOT NULL,
     "email" TEXT NOT NULL,
     "username" TEXT,
+    "avatar" TEXT,
     "role" "Role" NOT NULL DEFAULT 'USER',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -15,11 +16,11 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Donation" (
-    "id" TEXT NOT NULL,
+    "id" UUID NOT NULL,
     "amount" DOUBLE PRECISION NOT NULL,
     "message" TEXT,
     "donorName" TEXT NOT NULL,
-    "userId" INTEGER NOT NULL,
+    "userId" UUID NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -28,22 +29,22 @@ CREATE TABLE "Donation" (
 
 -- CreateTable
 CREATE TABLE "ProviderApproval" (
-    "id" SERIAL NOT NULL,
+    "id" UUID NOT NULL,
+    "isApproved" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "userId" INTEGER NOT NULL,
-    "isApproved" BOOLEAN NOT NULL DEFAULT false,
+    "userId" UUID NOT NULL,
 
     CONSTRAINT "ProviderApproval_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Favorite" (
-    "id" SERIAL NOT NULL,
+    "id" UUID NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "userId" INTEGER NOT NULL,
-    "donationId" TEXT NOT NULL,
+    "userId" UUID NOT NULL,
+    "donationId" UUID NOT NULL,
 
     CONSTRAINT "Favorite_pkey" PRIMARY KEY ("id")
 );
