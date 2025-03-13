@@ -1,10 +1,11 @@
 import { axiosInstance } from "@/lib/axios/axios";
 import { axiosError } from "@/lib/axios/axiosError";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { PayloadAuth } from "./useRegister";
-import { navigate } from "@/lib/server";
 
 export const useLogin = () => {
+  const router = useRouter();
   return useMutation({
     mutationFn: async (payload: PayloadAuth) => {
       const { data } = await axiosInstance.post("/auth/login", {
@@ -15,10 +16,12 @@ export const useLogin = () => {
       return data;
     },
     onSuccess: (data) => {
+      console.log("KETIKA SUCCESS:", data);
       alert(data.msg);
-      navigate("/");
+      router.push("/");
     },
     onError: (error) => {
+      console.log("ERROR SAAT MENGIRIM DATA:", error);
       axiosError(error);
     },
   });
