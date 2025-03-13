@@ -5,14 +5,10 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {
-  console.log("Incoming request:", req.method); // Cek metode request
-
   try {
     const supabase = createRouteHandlerClient({ cookies });
-    // const tes = createServerActionClient({ cookies });
 
     const body = await req.json();
-    console.log("Request body:", body); // Debug data yang dikirim
     const { email, password } = body;
 
     const existUser = await prisma.user.findUnique({
