@@ -4,10 +4,10 @@ import { IoSearchOutline } from "react-icons/io5";
 interface SearchProps {
   className?: string;
   withIcon?: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  autoFocus?: boolean;
 }
 
-const Search: React.FC<SearchProps> = ({ className, withIcon, onChange }) => {
+const Search: React.FC<SearchProps> = ({ className, withIcon, autoFocus }) => {
   return (
     <div
       className={clsx(
@@ -19,9 +19,10 @@ const Search: React.FC<SearchProps> = ({ className, withIcon, onChange }) => {
       <input
         type="text"
         id="search"
-        onChange={onChange}
+        // onChange={onChange}
         placeholder="Cari sesuatu disini"
         autoComplete="off"
+        autoFocus={autoFocus}
         className={clsx(
           `w-fit max-w-xl rounded-full bg-transparent px-3 py-1 text-sm outline-none md:w-full md:px-5 md:py-2`,
         )}
