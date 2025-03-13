@@ -5,17 +5,17 @@ import { Montserrat, Raleway, Roboto_Slab } from "next/font/google";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  style: ["normal", "italic"],
+  variable: "--font-montserrat",
 });
 
-const robotoSlab = Roboto_Slab({
+const robotoslab = Roboto_Slab({
   subsets: ["latin"],
-  style: ["normal"],
+  variable: "--font-roboto-slab",
 });
 
 const raleway = Raleway({
   subsets: ["latin"],
-  style: ["normal", "italic"],
+  variable: "--font-raleway",
 });
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.className} ${robotoSlab.className} ${raleway.className}`}
+        className={`${montserrat.variable} ${robotoslab.variable} ${raleway.variable}`}
       >
         <ClientProvider>{children}</ClientProvider>
       </body>
