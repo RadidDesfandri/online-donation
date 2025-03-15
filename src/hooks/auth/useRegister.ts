@@ -1,6 +1,7 @@
+import { useToast } from "@/context/ToastContext";
 import { axiosInstance } from "@/lib/axios/axios";
-import { axiosError } from "@/lib/axios/axiosError";
 import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 
 export interface PayloadAuth {
   email: string;
@@ -8,6 +9,8 @@ export interface PayloadAuth {
 }
 
 export const useRegister = () => {
+  const { addToast } = useToast();
+
   return useMutation({
     mutationFn: async (payload: PayloadAuth) => {
       const { data } = await axiosInstance.post("/auth/register", {
@@ -18,10 +21,12 @@ export const useRegister = () => {
       return data;
     },
     onSuccess: (data) => {
-      alert(data.msg);
+      addToast(data.msg);
     },
     onError: (error) => {
-      axiosError(error);
+      if (error instanceof AxiosError) {
+        addToast(error.response?.data || error.message, "error");
+      }
     },
   });
 };
