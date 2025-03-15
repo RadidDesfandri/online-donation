@@ -2,6 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import ClientProvider from "@/components/ClientProvider";
 import { Montserrat, Raleway, Roboto_Slab } from "next/font/google";
+import { ToastProvider } from "@/context/ToastContext";
+import ToastContainer from "@/components/ToastContainer";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -33,7 +35,12 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${robotoslab.variable} ${raleway.variable}`}
       >
-        <ClientProvider>{children}</ClientProvider>
+        <ToastProvider>
+          <ClientProvider>
+            {children}
+            <ToastContainer />
+          </ClientProvider>
+        </ToastProvider>
       </body>
     </html>
   );

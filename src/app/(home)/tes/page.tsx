@@ -1,9 +1,22 @@
-import { getSession } from "@/actions/getSession";
+"use client";
 
-const page = async () => {
-  const token = await getSession();
-  console.log(token?.access_token);
-  return <div>{token?.user.email}</div>;
+import Button from "@/components/buttons/Button";
+import { useToast } from "@/context/ToastContext";
+
+const Pagess = () => {
+  const { addToast } = useToast();
+  return (
+    <div className="flex h-full w-full items-center justify-center">
+      <Button
+        type="button"
+        secondary
+        autoPadding
+        onClick={() => addToast("Success, Please check your mail", "success")}
+      >
+        Click me
+      </Button>
+    </div>
+  );
 };
 
-export default page;
+export default Pagess;

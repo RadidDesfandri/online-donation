@@ -1,11 +1,14 @@
+import { useToast } from "@/context/ToastContext";
 import { axiosInstance } from "@/lib/axios/axios";
-import { axiosError } from "@/lib/axios/axiosError";
 import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { PayloadAuth } from "./useRegister";
 
 export const useLogin = () => {
   const router = useRouter();
+  const { addToast } = useToast();
+
   return useMutation({
     mutationFn: async (payload: PayloadAuth) => {
       const { data } = await axiosInstance.post("/auth/login", {
@@ -16,12 +19,14 @@ export const useLogin = () => {
       return data;
     },
     onSuccess: (data) => {
-      alert(data.msg);
+      addToast(data.msg);
       router.push("/");
     },
     onError: (error) => {
       console.log("ERROR SAAT MENGIRIM DATA:", error);
-      axiosError(error);
+      if (error instanceof AxiosError) {
+        addToast(error.response?.data || error.message, "error");
+      }
     },
   });
 };
