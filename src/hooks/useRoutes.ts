@@ -2,8 +2,10 @@ import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import { CiLogout } from "react-icons/ci";
 import { FiInbox } from "react-icons/fi";
+import { IoCartOutline } from "react-icons/io5";
 import { RiHome9Line } from "react-icons/ri";
 import { useToggle } from "./useToggle";
+import { LuLayoutDashboard } from "react-icons/lu";
 
 export const useRoutes = () => {
   const pathname = usePathname();
@@ -13,10 +15,17 @@ export const useRoutes = () => {
   const router = useMemo(
     () => [
       {
+        label: "Dashboard",
+        url: "/dashboard",
+        icon: LuLayoutDashboard,
+        active: pathname == "/dashboard",
+        // onClick: toggleSidebar,
+      },
+      {
         label: "Keranjang",
-        url: "/dashboard/keranjang",
-        icon: FiInbox,
-        active: pathname == "/dashboard/keranjang",
+        url: "/dashboard/cart",
+        icon: IoCartOutline,
+        active: pathname == "/dashboard/cart",
         // onClick: toggleSidebar,
       },
       {
