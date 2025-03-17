@@ -29,6 +29,7 @@ const AppSidebarMobile = () => {
   };
 
   useClickOutside([menuRef], handleToggleMenu, isOpenMenu);
+
   return (
     <div className="fixed top-0 left-0 flex w-full justify-between bg-white px-5 py-3 shadow md:hidden">
       <Link href={"/"}>Logo</Link>
@@ -41,7 +42,7 @@ const AppSidebarMobile = () => {
         isOpen={isOpenMenu}
         position="right"
         width="large"
-        className="p-5"
+        className="border-l border-l-gray-300 p-5"
       >
         <SidebarContent
           headerItems={headerMenu}

@@ -86,12 +86,12 @@ export const Modal: React.FC<ModalProps> = ({
             exit="exit"
             variants={animationVariants[animation]}
             transition={{ duration: 0.3 }}
+            onClick={(e) => e.stopPropagation()}
             className={clsx(
               "relative w-full max-w-lg rounded-lg bg-neutral-950 text-white shadow-lg",
               padded && "p-6",
               className,
             )}
-            onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={onClose}
