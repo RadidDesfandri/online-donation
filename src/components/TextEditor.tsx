@@ -21,15 +21,21 @@ import {
 import { RiH1, RiH2, RiH3, RiH4, RiH5, RiH6 } from "react-icons/ri";
 import { VscListOrdered } from "react-icons/vsc";
 import ButtonEditor from "./buttons/ButtonEditor";
+import clsx from "clsx";
 
 interface TextEditorProps {
   value: string;
   onChange: (value: string) => void;
+  disabled?: boolean;
 }
 
 const headingIcon = [RiH1, RiH2, RiH3, RiH4, RiH5, RiH6];
 
-const TextEditor: React.FC<TextEditorProps> = ({ value, onChange }) => {
+const TextEditor: React.FC<TextEditorProps> = ({
+  value,
+  onChange,
+  disabled,
+}) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -56,7 +62,12 @@ const TextEditor: React.FC<TextEditorProps> = ({ value, onChange }) => {
   if (!editor) return null;
 
   return (
-    <div className="-z-10 rounded border bg-white p-4">
+    <div
+      className={clsx(
+        "-z-10 rounded border bg-white p-4",
+        disabled && "opacity-55",
+      )}
+    >
       <div className="mb-3 flex flex-wrap gap-1">
         {headingIcon.map((Icon, idx) => (
           <ButtonEditor

@@ -10,11 +10,13 @@ import { MdInsertPhoto } from "react-icons/md";
 interface ImagePreviewSingleProps {
   name: string;
   label?: string;
+  disabled?: boolean;
 }
 
 export const ImagePreviewSingle: React.FC<ImagePreviewSingleProps> = ({
   name,
   label,
+  disabled,
 }) => {
   const [field, meta, helpers] = useField<File | null>(name);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -54,7 +56,8 @@ export const ImagePreviewSingle: React.FC<ImagePreviewSingleProps> = ({
       <label
         htmlFor={name}
         className={clsx(
-          "flex max-h-72 min-h-60 w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-dashed border-gray-300",
+          "flex max-h-72 min-h-44 w-full items-center justify-center overflow-hidden rounded-xl border-2 border-dashed border-gray-300 md:min-h-60",
+          disabled ? "cursor-default opacity-55" : "cursor-pointer",
         )}
       >
         {previewUrl ? (
@@ -87,6 +90,7 @@ export const ImagePreviewSingle: React.FC<ImagePreviewSingleProps> = ({
           type="file"
           name={name}
           id={name}
+          disabled={disabled}
           onChange={handleChange}
           className="hidden"
         />

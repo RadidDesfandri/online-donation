@@ -5,4 +5,5 @@ export const initialValuesCreateDonation: DonationValues = {
   content: "",
   tag: [],
   thumbnail: "",
+  amount: 0,
 };
