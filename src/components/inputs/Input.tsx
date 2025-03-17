@@ -35,13 +35,13 @@ const Input: React.FC<InputProps> = ({
   const isTypeShowPassword = showPassword ? "text" : "password";
 
   return (
-    <div>
+    <div className="w-full">
       {label && (
         <label htmlFor={id} className="mb-1 block text-sm font-medium">
           {label}
         </label>
       )}
-      <div className="relative">
+      <div className={clsx(type === "password" && "relative")}>
         <Field
           id={id}
           type={type == "password" ? isTypeShowPassword : type}

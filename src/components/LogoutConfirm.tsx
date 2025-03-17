@@ -29,7 +29,7 @@ const LogoutConfirm: React.FC<LogoutConfirmProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} padded>
+    <Modal isOpen={isOpen} onClose={onClose} padded disableScroll>
       <div>
         <h1 className="text-2xl font-medium">Logout</h1>
         <p className="mt-1 text-sm text-neutral-400">

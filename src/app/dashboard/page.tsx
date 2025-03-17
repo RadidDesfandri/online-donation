@@ -1,5 +1,13 @@
+import InnerDashboardProvider from "./components/InnerDashboardProvider";
+import InnerDashboardUser from "./components/InnerDashboardUser";
+
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return (
+    <>
+      <InnerDashboardProvider />
+      <InnerDashboardUser />
+    </>
+  );
 };
 
 export default Dashboard;
