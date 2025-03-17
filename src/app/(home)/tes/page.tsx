@@ -1,20 +1,15 @@
 "use client";
 
-import Button from "@/components/buttons/Button";
-import { useToast } from "@/context/ToastContext";
+import { useSession } from "@/hooks/auth/useSession";
 
 const Pagess = () => {
-  const { addToast } = useToast();
+  const { session } = useSession();
+
+  console.log("ACCESS_TOKEN", session?.access_token);
+
   return (
     <div className="flex h-full w-full items-center justify-center">
-      <Button
-        type="button"
-        secondary
-        autoPadding
-        onClick={() => addToast("Success, Please check your mail", "success")}
-      >
-        Click me
-      </Button>
+      <p className="w-96">{session?.access_token}</p>
     </div>
   );
 };
