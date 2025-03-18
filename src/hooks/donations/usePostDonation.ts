@@ -44,7 +44,14 @@ export const usePostDonation = () => {
     },
     onSuccess: (data) => {
       addToast(data.msg);
-      queryClient.invalidateQueries({ queryKey: ["donations", "donation"] });
+      queryClient.invalidateQueries({
+        queryKey: [
+          "donations",
+          "donation",
+          "pie-chart-donation",
+          "bar-chart-donation",
+        ],
+      });
       router.push("/dashboard");
     },
     onError: (error) => {

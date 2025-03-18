@@ -4,16 +4,13 @@ import { useGetCurrentUser } from "@/hooks/auth/useGetCurrentUser";
 import { useRoutes } from "@/hooks/useRoutes";
 import { navigate } from "@/lib/server";
 import { FiArrowLeft } from "react-icons/fi";
+import { IoSunnyOutline } from "react-icons/io5";
 import Button from "../buttons/Button";
 import SidebarContent from "./SidebarContent";
-import { IoMdNotificationsOutline } from "react-icons/io";
-import { usePathname } from "next/navigation";
-import clsx from "clsx";
 
 const AppSidebarDesktop = () => {
   const { router, isOpenModal, handleToggleModal } = useRoutes();
   const { data: userData, isPending } = useGetCurrentUser();
-  const pathname = usePathname();
 
   const logOutConfirm = {
     isOpen: isOpenModal,
@@ -39,12 +36,9 @@ const AppSidebarDesktop = () => {
         >
           Back <FiArrowLeft />
         </Button>
-        <IoMdNotificationsOutline
+        <IoSunnyOutline
           size={25}
-          className={clsx(
-            "cursor-pointer rounded-full p-1 text-black",
-            pathname.startsWith("/dashboard/notif") && "bg-gray-300",
-          )}
+          className="cursor-pointer rounded-full p-1 text-black"
         />
       </div>
       <SidebarContent

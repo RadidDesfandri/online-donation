@@ -4,6 +4,7 @@ import Button from "@/components/buttons/Button";
 import AutoCompleteInput from "@/components/inputs/AutoCompleteInput";
 import { ImagePreviewSingle } from "@/components/inputs/ImagePreviewSingle";
 import Input from "@/components/inputs/Input";
+import { InputRupiah } from "@/components/inputs/InputRupiah";
 import TextEditor from "@/components/TextEditor";
 import { DONATION_TAG_LINES } from "@/constanst/donations";
 import { initialValuesCreateDonation } from "@/formiks/donations/initialValues";
@@ -42,35 +43,34 @@ const FormCreateDonation = () => {
         <Form className="flex flex-col gap-5">
           <ImagePreviewSingle
             name="thumbnail"
-            label="Thumbnail"
+            label="Gambar Thumbnail"
             disabled={isPending}
           />
           <div className="flex w-full flex-col gap-2 md:flex-row">
             <Input
-              label="Title"
+              label="Judul Donasi"
               name="title"
               type="text"
               disabled={isPending}
-              placeholder="Create a title for your donation"
+              placeholder="Masukkan judul donasi"
               autoComplete="off"
               error={!!errors.title}
             />
-            <Input
-              label="Amount"
+            <InputRupiah
+              label="Target Donasi (optional)"
               name="amount"
-              type="number"
               disabled={isPending}
-              placeholder="Target donation"
-              autoComplete="off"
+              placeholder="Masukkan jumlah target donasi (contoh: 10.000.000)"
               error={!!errors.amount}
             />
           </div>
           <div className="flex w-full flex-col">
             <AutoCompleteInput
               name="tag"
-              label="Tagline"
+              label="Tag"
               disabled={isPending}
               onSelect={(value) => setFieldValue("tag", value)}
+              placeholder="Tambahkan tag terkait, lalu tekan Tab atau Enter"
               suggestions={DONATION_TAG_LINES}
             />
             <ErrorMessage
@@ -81,7 +81,7 @@ const FormCreateDonation = () => {
           </div>
           <div>
             <label htmlFor="content" className="mb-1 block text-sm font-medium">
-              Content
+              Deskripsi Donasi
             </label>
             <TextEditor
               value={values.content}
