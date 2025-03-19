@@ -4,22 +4,20 @@ export const DUMMY_ITEMS = [
     thumbnail: "/dummy/dummy2.jpg",
     header: "Sejuta Buku untuk Masa Depan Anak Bangsa",
     totalAmount: 1200000,
-    tagline: [
-      { text: "Sekolah" },
-      { text: "Pendidikan" },
-      { text: "Education" },
-      { text: "Baca Buku" },
-    ],
+    tagline: ["Sekolah", "Pendidikan", "Education", "Baca Buku"],
   },
   {
     id: "Women-sample2",
     thumbnail: "/dummy/dummy3.jpg",
-    header: "Sejuta Buku untuk Masa Depan Anak Bangsa",
+    header: "Sejuta Buku untuk Masa Depan Anak Bangsa2",
     totalAmount: 1300000,
-    tagline: [
-      { text: "Sekolah" },
-      { text: "Pendidikan" },
-      { text: "Education" },
-    ],
+    tagline: ["Sekolah", "Pendidikan", "Education"],
+  },
+  {
+    id: "Women-sample2",
+    thumbnail: "/dummy/dummy3.jpg",
+    header: "Sejuta Buku untuk Masa Depan Anak Bangsa3",
+    totalAmount: 1300000,
+    tagline: ["Sekolah", "Pendidikan", "Education"],
   },
 ];

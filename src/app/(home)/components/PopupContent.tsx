@@ -2,6 +2,7 @@
 
 import PopupAnimate from "@/components/animations/PopupAnimate";
 import Avatar from "@/components/Avatar";
+import Line from "@/components/Line";
 import LogoutConfirm from "@/components/LogoutConfirm";
 import { useGetCurrentUser } from "@/hooks/auth/useGetCurrentUser";
 import { useRoutes } from "@/hooks/useRoutes";
@@ -25,7 +26,7 @@ const PopupContent: React.FC<PopupContentProps> = ({ isOpen, ref }) => {
       isOpen={isOpen}
       ref={ref}
       originPopup="top-right"
-      className="absolute right-4 -bottom-[245px] z-50 min-w-72 rounded-lg border border-neutral-200 bg-white p-3 shadow md:right-0 md:min-w-80"
+      className="absolute right-4 -bottom-[290px] z-50 min-w-72 rounded-lg border border-neutral-200 bg-white p-3 shadow md:right-0 md:min-w-80"
     >
       <Link
         href={"/dashboard/profile"}
@@ -34,16 +35,16 @@ const PopupContent: React.FC<PopupContentProps> = ({ isOpen, ref }) => {
         <Avatar avatar={userData?.avatar} size="small" />
         <div>
           <h1 className="group-hover:text-primaryGreen font-sans text-lg font-semibold transition-all duration-300 md:text-xl">
-            {userData?.username}
+            {userData?.username || "Username"}
           </h1>
           <p className="font-sans text-xs text-neutral-700">
             {userData?.email}
           </p>
         </div>
       </Link>
-      <div className="my-2 w-full border-t border-gray-300" />
+      <Line />
       <div className="flex flex-col gap-1 font-sans">
-        {router.slice(0, 2).map((route) => (
+        {router.slice(0, 3).map((route) => (
           <Link
             key={route.label}
             href={route.url}

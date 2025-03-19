@@ -1,9 +1,17 @@
-import { getSession } from "@/actions/getSession";
+"use client";
 
-const page = async () => {
-  const token = await getSession();
-  console.log(token?.access_token);
-  return <div>{token?.user.email}</div>;
+import { useSession } from "@/hooks/auth/useSession";
+
+const Pagess = () => {
+  const { session } = useSession();
+
+  console.log("ACCESS_TOKEN", session?.access_token);
+
+  return (
+    <div className="flex h-full w-full items-center justify-center">
+      <p className="w-96">{session?.access_token}</p>
+    </div>
+  );
 };
 
-export default page;
+export default Pagess;

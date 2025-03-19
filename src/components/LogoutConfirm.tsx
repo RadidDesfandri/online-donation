@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation";
 import Button from "./buttons/Button";
 import { Modal } from "./Modal";
 import { supabaseClientComponent } from "@/lib/supabase/supabaseClientComponent";
+import { useToast } from "@/context/ToastContext";
 
 interface LogoutConfirmProps {
   isOpen: boolean;
@@ -10,15 +11,17 @@ interface LogoutConfirmProps {
 
 const LogoutConfirm: React.FC<LogoutConfirmProps> = ({ isOpen, onClose }) => {
   const router = useRouter();
+  const { addToast } = useToast();
 
   const handleLogout = async () => {
     try {
       const { error } = await supabaseClientComponent.auth.signOut();
       if (error) {
-        alert("Something went wrong");
+        addToast("Something went wrong", "error");
       } else {
-        alert("Logout success");
+        addToast("Logout success");
         router.push("/auth");
+        onClose();
       }
     } catch (error) {
       console.log("ERROR LOGOUT:", error);
@@ -26,7 +29,7 @@ const LogoutConfirm: React.FC<LogoutConfirmProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} padded>
+    <Modal isOpen={isOpen} onClose={onClose} padded disableScroll>
       <div>
         <h1 className="text-2xl font-medium">Logout</h1>
         <p className="mt-1 text-sm text-neutral-400">

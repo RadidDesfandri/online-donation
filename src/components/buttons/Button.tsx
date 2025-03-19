@@ -45,7 +45,7 @@ const Button: React.FC<ButtonProps> = ({
           "bg-primaryGreen hover:bg-secondaryGreen disabled:hover:bg-primaryGreen text-white",
         fullWidth && "w-full",
         danger &&
-          "bg-rose-500 text-white hover:bg-rose-600 disabled:hover:bg-rose-500",
+          "bg-red-500 text-white hover:bg-red-600 disabled:hover:bg-rose-500",
         outline && "ring-primaryGreen bg-transparent ring-2 ring-inset",
         autoPadding && "px-4 py-1 md:px-6 md:py-2",
         className,
