@@ -8,6 +8,7 @@ import { useRef } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
 import ConfrimDeleteDonation from "./ConfrimDeleteDonation";
 import MenuItemsCardDonation from "./MenuItemsCardDonation";
+import { upperCaseFirstLetter } from "@/lib/uppareCaseFirstLetter";
 
 interface CardDonationProviderProps {
   id: string;
@@ -55,7 +56,7 @@ const CardDonationProvider: React.FC<CardDonationProviderProps> = ({
 
       <div className="px-2 py-1 pb-3">
         <h1 className="font-montserrat mt-2 mb-3 line-clamp-2 h-10 leading-5 font-semibold text-black">
-          {title}
+          {upperCaseFirstLetter(title)}
         </h1>
         <div className="flex h-[50px] flex-wrap items-start gap-1">
           {maxTag.map((tag, idx) => {

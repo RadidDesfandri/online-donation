@@ -17,6 +17,7 @@ export const GET = async (req: Request) => {
       where: {
         userId,
       },
+      orderBy: { createdAt: "desc" },
     });
 
     return NextResponse.json({ status: "ok", response: donations });

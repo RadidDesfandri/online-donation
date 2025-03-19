@@ -2,13 +2,14 @@
 
 import { useGetCurrentUser } from "@/hooks/auth/useGetCurrentUser";
 import { useSession } from "@/hooks/auth/useSession";
+import LoadingSkeletonDashboard from "./LoadingSkeletonDashboard";
 
 const InnerDashboardUser = () => {
   const { session, isLoading } = useSession();
-  const { data: userData } = useGetCurrentUser();
+  const { data: userData, isPending } = useGetCurrentUser();
 
-  if (isLoading) {
-    return <div>LOADING....</div>;
+  if (isLoading || isPending) {
+    return <LoadingSkeletonDashboard />;
   }
 
   if (session && userData?.role === "USER") {
