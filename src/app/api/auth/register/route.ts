@@ -1,5 +1,5 @@
 import prisma from "@/lib/prismadb";
-import { responseError } from "@/lib/responseError";
+import { responseError } from "@/lib/api/responseError";
 import { supabase } from "@/lib/supabase/supabaseClient";
 import { NextResponse } from "next/server";
 

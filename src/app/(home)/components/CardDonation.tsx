@@ -8,7 +8,7 @@ interface CardDonationProps {
   thumbnail: string;
   header: string;
   totalAmount: number;
-  tagline: { text: string }[];
+  tagline: string[];
 }
 
 const CardDonation: React.FC<CardDonationProps> = ({
@@ -32,13 +32,13 @@ const CardDonation: React.FC<CardDonationProps> = ({
         src={thumbnail}
         className="h-full max-h-48 w-full rounded-lg object-cover"
       />
-      <h4 className="font-montserrat mt-2 mb-3 line-clamp-2 leading-5 font-semibold">
+      <h4 className="font-montserrat mt-2 mb-3 line-clamp-2 leading-5 font-semibold text-black">
         {header}
       </h4>
 
       <div className="flex h-[50px] flex-wrap items-start gap-1">
         {maxTag.map((tag, idx) => {
-          return <Boxtag text={tag.text} key={`Tag-${tag.text}-${idx}`} />;
+          return <Boxtag text={tag} key={`Tag-${tag}-${idx}`} />;
         })}
         {tagline.length > 3 && <Boxtag text={`${tagline.length - 3}+`} />}
       </div>

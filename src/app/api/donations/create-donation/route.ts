@@ -1,23 +1,19 @@
-import { NextResponse } from "next/server";
-import { writeFile } from "fs/promises";
-import path from "path";
+import { getUserId } from "@/lib/api/getUserId";
 import prisma from "@/lib/prismadb";
-import { responseError } from "@/lib/responseError";
-import { decodeToken } from "@/actions/decodeToken";
+import { responseError } from "@/lib/api/responseError";
+import { writeFile } from "fs/promises";
+import { NextResponse } from "next/server";
+import path from "path";
 
 export const POST = async (req: Request) => {
   try {
-    const { user, error, status } = await decodeToken(req);
+    const user = await getUserId(req);
 
-    if (error) return responseError(error, status);
+    if (user.error) {
+      return responseError(user.message, user.status);
+    }
 
-    const findUser = await prisma.user.findUnique({
-      where: {
-        email: user?.email,
-      },
-    });
-
-    if (!findUser) return responseError("User notfound", 404);
+    const { userId } = user;
 
     const formData = await req.formData();
     const title = formData.get("title") as string;
@@ -37,7 +33,7 @@ export const POST = async (req: Request) => {
         tag,
         thumbnail: `/uploads/${thumbnail.name}`,
         amount,
-        userId: findUser.id,
+        userId: userId as string,
       },
     });
 

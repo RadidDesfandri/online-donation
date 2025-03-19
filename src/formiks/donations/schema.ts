@@ -5,4 +5,5 @@ export const validationSchemaCreateDonation = Yup.object({
   content: Yup.string().required(),
   tag: Yup.array().required().min(1).max(10),
   thumbnail: Yup.string().required(),
+  // amount: Yup.number().max(10),
 });
