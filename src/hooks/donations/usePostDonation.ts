@@ -11,6 +11,7 @@ interface Payload {
   tag: string[];
   thumbnail: string | null;
   amount: number;
+  category: string;
 }
 
 export const usePostDonation = () => {
@@ -28,6 +29,7 @@ export const usePostDonation = () => {
       formData.append("tag", JSON.stringify(values.tag));
       formData.append("thumbnail", values.thumbnail || "");
       formData.append("amount", String(values.amount));
+      formData.append("category", String(values.category));
 
       const { data } = await axiosInstance.post(
         "/donations/create-donation",

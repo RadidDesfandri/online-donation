@@ -21,6 +21,7 @@ export const POST = async (req: Request) => {
     const tag = JSON.parse(formData.get("tag") as string);
     const thumbnail = formData.get("thumbnail") as File;
     const amount = Number(formData.get("amount"));
+    const category = formData.get("category") as string;
 
     const filePath = path.join(process.cwd(), "public/uploads", thumbnail.name);
     const buffer = Buffer.from(await thumbnail.arrayBuffer());
@@ -33,6 +34,7 @@ export const POST = async (req: Request) => {
         tag,
         thumbnail: `/uploads/${thumbnail.name}`,
         amount,
+        category,
         userId: userId as string,
       },
     });
