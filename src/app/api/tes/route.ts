@@ -135,7 +135,7 @@ export const POST = async () => {
       }
     }
 
-    return NextResponse.json("Berhasil bang");
+    return NextResponse.json("Berhasil");
   } catch (error) {
     console.error("Internal error", error);
     return new NextResponse("Internal error", { status: 500 });

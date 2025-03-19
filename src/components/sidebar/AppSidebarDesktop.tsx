@@ -25,7 +25,7 @@ const AppSidebarDesktop = () => {
   };
 
   return (
-    <div className="fixed top-1/6 left-16 hidden min-h-72 min-w-56 rounded-xl p-4 shadow md:block">
+    <div className="fixed top-1/6 left-16 z-50 hidden min-h-72 min-w-56 rounded-xl p-4 shadow md:block">
       <div className="mb-2 flex items-center justify-between">
         <Button
           outline

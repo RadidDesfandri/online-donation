@@ -1,6 +1,6 @@
 import { decodeToken } from "@/actions/decodeToken";
 import prisma from "@/lib/prismadb";
-import { responseError } from "@/lib/responseError";
+import { responseError } from "@/lib/api/responseError";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {

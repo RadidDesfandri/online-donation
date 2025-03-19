@@ -31,7 +31,7 @@ const AppSidebarMobile = () => {
   useClickOutside([menuRef], handleToggleMenu, isOpenMenu);
 
   return (
-    <div className="fixed top-0 left-0 flex w-full justify-between bg-white px-5 py-3 shadow md:hidden">
+    <div className="fixed top-0 left-0 z-50 flex w-full justify-between bg-white px-5 py-3 shadow md:hidden">
       <Link href={"/"}>Logo</Link>
       <button onClick={handleToggleMenu} className="cursor-pointer">
         <MdMenu size={22} />
