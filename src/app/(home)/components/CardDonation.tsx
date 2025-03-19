@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { toRupiah } from "@/utils/toRupiah";
 import Boxtag from "@/components/Boxtag";
+import { upperCaseFirstLetter } from "@/lib/uppareCaseFirstLetter";
 
 interface CardDonationProps {
   id: string;
@@ -32,8 +33,8 @@ const CardDonation: React.FC<CardDonationProps> = ({
         src={thumbnail}
         className="h-full max-h-48 w-full rounded-lg object-cover"
       />
-      <h4 className="font-montserrat mt-2 mb-3 line-clamp-2 leading-5 font-semibold text-black">
-        {header}
+      <h4 className="font-montserrat mt-2 mb-3 line-clamp-2 h-10 leading-5 font-semibold text-black">
+        {upperCaseFirstLetter(header)}
       </h4>
 
       <div className="flex h-[50px] flex-wrap items-start gap-1">

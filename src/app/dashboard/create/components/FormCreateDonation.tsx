@@ -19,6 +19,7 @@ export interface DonationValues {
   tag: string[];
   thumbnail: string | null;
   amount: number;
+  category: string;
 }
 
 const FormCreateDonation = () => {
@@ -46,15 +47,24 @@ const FormCreateDonation = () => {
             label="Gambar Thumbnail"
             disabled={isPending}
           />
+          <Input
+            label="Judul Donasi"
+            name="title"
+            type="text"
+            disabled={isPending}
+            placeholder="Masukkan judul donasi"
+            autoComplete="off"
+            error={!!errors.title}
+          />
           <div className="flex w-full flex-col gap-2 md:flex-row">
             <Input
               label="Judul Donasi"
-              name="title"
+              name="category"
               type="text"
               disabled={isPending}
               placeholder="Masukkan judul donasi"
               autoComplete="off"
-              error={!!errors.title}
+              error={!!errors.category}
             />
             <InputRupiah
               label="Target Donasi (optional)"

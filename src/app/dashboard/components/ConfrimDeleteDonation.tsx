@@ -1,5 +1,6 @@
 import Button from "@/components/buttons/Button";
 import { Modal } from "@/components/Modal";
+import { upperCaseFirstLetter } from "@/lib/uppareCaseFirstLetter";
 
 interface ConfrimDeleteDonationProps {
   id: string;
@@ -19,7 +20,7 @@ const ConfrimDeleteDonation: React.FC<ConfrimDeleteDonationProps> = ({
       <div>
         <h1 className="text-2xl font-medium">Hapus donasi?</h1>
         <p className="mt-1 text-sm text-neutral-400">
-          {`Apakah anda yakin ingin menghapus donasi "${title}"`}
+          {`Apakah anda yakin ingin menghapus donasi "${upperCaseFirstLetter(title)}"`}
         </p>
         <div className="mt-8 flex justify-end">
           <Button
