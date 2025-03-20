@@ -7,13 +7,20 @@ export const GET = async (req: Request) => {
     const { searchParams } = new URL(req.url);
 
     const search = searchParams.get("search")?.toLowerCase();
-    // const category = searchParams.get("category")?.toLowerCase();
+    const category = searchParams.get("category");
     const page = parseInt(searchParams.get("page") || "1", 10);
     const limit = parseInt(searchParams.get("limit") || "10", 10);
 
     const skip = (page - 1) * limit;
 
     const whereCondition: Prisma.DonationWhereInput = {};
+
+    if (category) {
+      whereCondition.category = {
+        contains: category,
+        mode: "insensitive",
+      };
+    }
 
     if (search) {
       whereCondition.OR = [

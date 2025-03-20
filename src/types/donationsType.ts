@@ -4,6 +4,7 @@ export interface AllDonationsType {
   tag: string[];
   content: string;
   thumbnail: string;
+  category: string;
   amount: number;
   userId: string;
   createdAt: string;
