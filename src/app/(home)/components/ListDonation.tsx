@@ -79,7 +79,11 @@ const DonationGrid = ({
         />
       ))}
     </div>
-    {isLoadingMore && <DonationSkeleton />}
+    {isLoadingMore && (
+      <div className="mt-4">
+        <DonationSkeleton />
+      </div>
+    )}
   </>
 );
 
