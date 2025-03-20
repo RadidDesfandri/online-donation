@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/buttons/Button";
+import Dropdown from "@/components/Dropdown";
 import AutoCompleteInput from "@/components/inputs/AutoCompleteInput";
 import { ImagePreviewSingle } from "@/components/inputs/ImagePreviewSingle";
 import Input from "@/components/inputs/Input";
@@ -25,6 +26,13 @@ export interface DonationValues {
 const FormCreateDonation = () => {
   const [isClient, setIsClient] = useState<boolean>(false);
   const { mutate: handleSubmit, isPending } = usePostDonation();
+
+  const optionCategories = [
+    { label: "Sosial", value: "Sosial" },
+    { label: "Bencana", value: "Bencana" },
+    { label: "Pendidikan", value: "Pendidikan" },
+    { label: "Kesehatan", value: "Kesehatan" },
+  ];
 
   useEffect(() => {
     setIsClient(true);
@@ -57,14 +65,13 @@ const FormCreateDonation = () => {
             error={!!errors.title}
           />
           <div className="flex w-full flex-col gap-2 md:flex-row">
-            <Input
-              label="Judul Donasi"
+            <Dropdown
               name="category"
-              type="text"
+              label="Pilih kategori"
+              placeholder="Pilih kategori untuk donasi anda"
+              variant="primary"
               disabled={isPending}
-              placeholder="Masukkan judul donasi"
-              autoComplete="off"
-              error={!!errors.category}
+              options={optionCategories}
             />
             <InputRupiah
               label="Target Donasi (optional)"
