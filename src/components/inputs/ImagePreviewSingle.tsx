@@ -6,6 +6,7 @@ import Image from "next/image";
 import { IoClose } from "react-icons/io5";
 import clsx from "clsx";
 import { MdInsertPhoto } from "react-icons/md";
+import { useToast } from "@/context/ToastContext";
 
 interface ImagePreviewSingleProps {
   name: string;
@@ -20,6 +21,9 @@ export const ImagePreviewSingle: React.FC<ImagePreviewSingleProps> = ({
 }) => {
   const [field, meta, helpers] = useField<File | null>(name);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const { addToast } = useToast();
+
+  const maxFileSize = 1 * 1024 * 1024;
 
   useEffect(() => {
     if (!field.value) {
@@ -31,12 +35,16 @@ export const ImagePreviewSingle: React.FC<ImagePreviewSingleProps> = ({
     const file = event.target.files?.[0] || null;
 
     if (file) {
-      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      if (file.size > maxFileSize) {
+        addToast("Maksimal 1 mb", "error");
+      } else {
+        if (previewUrl) URL.revokeObjectURL(previewUrl);
 
-      const newPreviewUrl = URL.createObjectURL(file);
-      setPreviewUrl(newPreviewUrl);
-      helpers.setValue(file);
-      helpers.setTouched(true);
+        const newPreviewUrl = URL.createObjectURL(file);
+        setPreviewUrl(newPreviewUrl);
+        helpers.setValue(file);
+        helpers.setTouched(true);
+      }
     }
   };
 
