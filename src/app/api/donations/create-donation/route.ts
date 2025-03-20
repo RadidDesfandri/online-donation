@@ -1,9 +1,8 @@
 import { getUserId } from "@/lib/api/getUserId";
-import prisma from "@/lib/prismadb";
 import { responseError } from "@/lib/api/responseError";
-import { writeFile } from "fs/promises";
+import prisma from "@/lib/prismadb";
+import { supabase } from "@/lib/supabase/supabaseClient";
 import { NextResponse } from "next/server";
-import path from "path";
 
 export const POST = async (req: Request) => {
   try {
@@ -14,7 +13,6 @@ export const POST = async (req: Request) => {
     }
 
     const { userId } = user;
-
     const formData = await req.formData();
     const title = formData.get("title") as string;
     const content = formData.get("content") as string;
@@ -23,16 +21,32 @@ export const POST = async (req: Request) => {
     const amount = Number(formData.get("amount"));
     const category = formData.get("category") as string;
 
-    const filePath = path.join(process.cwd(), "public/uploads", thumbnail.name);
-    const buffer = Buffer.from(await thumbnail.arrayBuffer());
-    await writeFile(filePath, buffer);
+    const filename = `${Date.now()}-${thumbnail.name}`;
+
+    const bytes = await thumbnail.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    const { error } = await supabase.storage
+      .from("donations")
+      .upload(filename, buffer, {
+        contentType: thumbnail.type,
+        upsert: false,
+      });
+
+    if (error) return responseError(error.message, 400);
+
+    const { data: urlData } = supabase.storage
+      .from("donations")
+      .getPublicUrl(filename);
+
+    const imageUrl = urlData.publicUrl;
 
     const donation = await prisma.donation.create({
       data: {
         title,
         content,
         tag,
-        thumbnail: `/uploads/${thumbnail.name}`,
+        thumbnail: imageUrl,
         amount,
         category,
         userId: userId as string,
