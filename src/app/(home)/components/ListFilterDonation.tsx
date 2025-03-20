@@ -9,12 +9,12 @@ import ListDonation from "./ListDonation";
 const ListFilter = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const currentFilter = searchParams.get("filter") || "";
+  const currentFilter = searchParams.get("category") || "";
   const contentRef = useRef<HTMLDivElement>(null);
 
   const handleFilterClick = (filterLabel: string) => {
     const params = new URLSearchParams(searchParams);
-    params.set("filter", filterLabel.toLowerCase());
+    params.set("category", filterLabel.toLowerCase());
     router.push(`?${params.toString()}`, { scroll: false });
 
     setTimeout(() => {
@@ -22,7 +22,7 @@ const ListFilter = () => {
         behavior: "smooth",
         block: "start",
       });
-    }, 100);
+    }, 200);
   };
 
   return (
