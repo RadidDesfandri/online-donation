@@ -50,6 +50,7 @@ export const usePostDonation = () => {
         queryKey: [
           "donations",
           "donation",
+          "donations-provider",
           "pie-chart-donation",
           "bar-chart-donation",
         ],

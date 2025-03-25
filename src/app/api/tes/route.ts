@@ -110,6 +110,7 @@ export const POST = async () => {
       date_time: data.node.date,
       isNews: data.node.categories.nodes[0].name,
       rich_text: encodeURI(data.node.content),
+      content_old_news: data.node.content,
       image: data.node.featuredImage.node.sourceUrl,
     }));
 
