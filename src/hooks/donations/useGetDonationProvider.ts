@@ -10,7 +10,7 @@ interface Response {
 
 export const useGetDonationProvider = () => {
   return useQuery({
-    queryKey: ["donation"],
+    queryKey: ["donations-provider"],
     queryFn: async () => {
       const token = await getToken();
 
