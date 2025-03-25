@@ -18,12 +18,11 @@ body,
   scroll-behavior: smooth;
 }
 
-/* globals.css atau file CSS khusus untuk Tiptap */
 .ProseMirror {
   padding: 1rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.375rem;
   min-height: 200px;
+  /* border: 1px solid #e2e8f0; */
+  /* border-radius: 0.375rem; */
 }
 
 .ProseMirror h1 {

@@ -128,7 +128,11 @@ const TextEditor: React.FC<TextEditorProps> = ({
         </ButtonEditor>
       </div>
 
-      <EditorContent name="content" editor={editor} />
+      <EditorContent
+        name="content"
+        editor={editor}
+        className="rounded-md border-1"
+      />
     </div>
   );
 };
