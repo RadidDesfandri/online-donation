@@ -102,7 +102,13 @@ const DetailDonationsIndex = ({ donationId }: { donationId: string }) => {
                 <IoShareSocialOutline />
                 <p>Bagikan</p>
               </Button>
-              <Button secondary fullWidth autoPadding type="button">
+              <Button
+                secondary
+                fullWidth
+                autoPadding
+                type="button"
+                onClick={() => router.push(`/form-payment/${donationId}`)}
+              >
                 <FaHandHoldingHeart />
                 <p>Donasi</p>
               </Button>
