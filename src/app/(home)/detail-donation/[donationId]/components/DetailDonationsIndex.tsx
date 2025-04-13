@@ -7,22 +7,16 @@ import { useGetDetailDonation } from "@/hooks/donations/useGetDetailDonation";
 import { upperCaseFirstLetter } from "@/lib/uppareCaseFirstLetter";
 import clsx from "clsx";
 import Image from "next/image";
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
-import { CgDetailsMore } from "react-icons/cg";
 import { FaHandHoldingHeart } from "react-icons/fa";
-import {
-  IoBookmarks,
-  IoBookmarksOutline,
-  IoShareSocialOutline,
-} from "react-icons/io5";
+import { IoBookmarks, IoShareSocialOutline } from "react-icons/io5";
+import DonationInteractionCard from "./DonationInteractionCard";
 import LoadingSkeletonDetailDonation from "./LoadingSkeletonDetailDonation";
 
 const DetailDonationsIndex = ({ donationId }: { donationId: string }) => {
   const { data: donationData, isPending } = useGetDetailDonation(donationId);
-
   const [isScrolled, setIsScrolled] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     const checkScroll = () => {
@@ -46,7 +40,7 @@ const DetailDonationsIndex = ({ donationId }: { donationId: string }) => {
       <Image
         width={1300}
         height={1000}
-        alt=" donate"
+        alt="donate"
         priority
         src={donationData?.thumbnail || "/non-image.png"}
         className={clsx(
@@ -91,38 +85,8 @@ const DetailDonationsIndex = ({ donationId }: { donationId: string }) => {
             }}
           />
         </div>
-        <div className="mt-4 hidden w-[80%] md:block">
-          <div className="sticky top-3 w-full rounded-lg border bg-white px-3 py-5 text-black shadow-md">
-            <h1 className="font-montserrat">
-              Bersama, kita ciptakan dunia yang lebih baik. Ayo mulai perjalanan
-              kebaikan ini sekarang!
-            </h1>
-            <div className="my-5 flex w-full items-center gap-x-3">
-              <Button outline fullWidth autoPadding type="button">
-                <IoShareSocialOutline />
-                <p>Bagikan</p>
-              </Button>
-              <Button secondary fullWidth autoPadding type="button">
-                <FaHandHoldingHeart />
-                <p>Donasi</p>
-              </Button>
-            </div>
-            <div className="flex items-center justify-center gap-x-6 border-t pt-4">
-              <Button type="button">
-                {/* <IoBookmarks /> */}
-                <IoBookmarksOutline />
-                <p>Simpan</p>
-              </Button>
-              <Button
-                type="button"
-                onClick={() => router.push("#detail-donate")}
-              >
-                <CgDetailsMore />
-                <p>Lihat detail</p>
-              </Button>
-            </div>
-          </div>
-        </div>
+
+        <DonationInteractionCard donationId={donationId} />
       </div>
     </>
   );
